@@ -1,5 +1,22 @@
 #!/bin/bash
 
+## ******************************************************************************
+## Version & Branch helpers which are used to centralize 
+##		those values
+## A future improvement to this could be detecting from the current git branch
+## 		if issues like non-version branches could be addressed, for instance by
+##  	looking upstream in the git log to find the base version.  It would also
+##		have to deal with the detail that our branches sometimes have numbers and 
+##		sometimes have 'x' in the PATCH slot
+CP_VERSION_MAJOR=5
+CP_VERSION_MINOR=4
+CP_VERSION_PATCH=x
+# likely "-post" or empty string
+CP_BRANCH_SUFFIX=
+CP_VERSION_FULL="$CP_VERSION_MAJOR.$CP_VERSION_MINOR.$CP_VERSION_PATCH"
+CP_BRANCH="$CP_VERSION_FULL$CP_BRANCH_SUFFIX"
+## ******************************************************************************
+
 function check_env() {
   if [[ -z "$CONFLUENT_HOME" ]]; then
     echo "\$CONFLUENT_HOME is not defined. Run 'export CONFLUENT_HOME=/path/to/confluentplatform' and try again"
